@@ -6,7 +6,7 @@ class HomeView(View):
         return render(request, "index.html",  {})
     
 class RoomView(View):
-    def get(request, room_name):
+    def get(self, request, room_name, *args,  **kwargs):
         return render(request, 'room.html', {
             'room_name': room_name
         })
