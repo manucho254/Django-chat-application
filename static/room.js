@@ -1,4 +1,13 @@
 const roomName = JSON.parse(document.getElementById('room-name').textContent);
+const chatLog = document.querySelector('#chat-log');
+
+if (chatLog.childNodes.length < 1) {
+    const emptyText = document.createElement("span");
+    emptyText.id = 'emptyText';
+    emptyText.innerText = 'No messages';
+    emptyText.className = "emptyText";
+    chatLog.appendChild(emptyText);
+}
 
 const chatSocket = new WebSocket(
     'ws://' +
@@ -10,12 +19,13 @@ const chatSocket = new WebSocket(
 
 chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    const chatLog = document.querySelector('#chat-log');
     const chatMessage = document.createElement('div');
     chatMessage.innerText = `${data.message + '\n'}`;
-    chatMessage.classList.add("rounded-pill", "bg-info", "messages");
+    chatMessage.classList.add("messages");
     chatLog.appendChild(chatMessage);
-
+    if (chatLog.childNodes.length >= 1) {
+        chatLog.removeChild(emptyText);
+    }
 };
 
 chatSocket.onclose = function(e) {

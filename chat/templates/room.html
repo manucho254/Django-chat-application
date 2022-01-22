@@ -2,24 +2,41 @@
 {% load static %}
 
 {% block content %}
-
-<div class="container">
-    <a href="{% url 'home' %}" class="btn btn-dark">exit room</a>
-    
-</div>
    
-    <div class="container">
-        <div class="row justify-content-center mt-3">
-                <div class="card bg-light">
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 col-sm-12">
+            <div class="card p-1 bg-light rounded">
+                <div class="card-header mb-3 p-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a  class="btn shadow-none me-1 mt-2" href="">
+                                <i class="fas fa-chevron-left h3"></i>
+                            </a>
+                            <img class="reciever-image me-2" 
+                                    src="https://media.istockphoto.com/photos/christmas-background-with-hot-chocolate-with-marshmallows-picture-id1278963644?b=1&k=20&m=1278963644&s=170667a&w=0&h=cae3GSYU8Rlbl5_OoxeXYk0414QVwLXoWmXARVrOxVc=" alt="prof_image">
+                            <span class="fw-bold">
+                                John Doe
+                            </span>
+                        </div>
+                        <div>
+                            <a  class="btn shadow-none me-2" href=""><i class="fas fa-phone-alt h5"></i></a>
+                            <a  class="btn shadow-none " href=""><i class="fas fa-video h5"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light">
                     <div id="chat-log"></div>
                 </div>
                 <div class="d-flex">
                     <input id="chat-message-input" class="room-input form-control shadow-none mt-2" type="text" size="100"><br>
-                    <input id="chat-message-submit" type="button" class="btn btn-info shadow-none mt-2" value="Send">
+                    <input id="chat-message-submit" type="button" class="btn send-button shadow-none mt-2" value="Send">
                         {{ room_name|json_script:"room-name" }}
                 </div>
+            </div>
         </div>
     </div>
+</div>
 
 <script src='{% static "room.js" %}'></script>
 
