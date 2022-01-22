@@ -1,0 +1,18 @@
+.messages {
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+}
+
+.room-input {
+    background-color: rgb(240, 247, 245);
+    border: 0;
+}
+
+.room-input:focus {
+    background-color: rgb(240, 247, 245);
+}

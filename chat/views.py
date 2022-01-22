@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
     def get(self,  request,  *args,  **kwargs):
         return render(request, "index.html",  {})
     
-class RoomView(View):
+class RoomView(LoginRequiredMixin, View):
     def get(self, request, room_name, *args,  **kwargs):
-        return render(request, 'room.html', {
-            'room_name': room_name
-        })
+        context = {
+            "room_name": room_name
+        }
+        return render(request, 'room.html', context)
