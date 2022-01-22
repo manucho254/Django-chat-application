@@ -42,8 +42,20 @@ document.querySelector('#chat-message-input').onkeyup = function(e) {
 document.querySelector('#chat-message-submit').onclick = function(e) {
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
-    chatSocket.send(JSON.stringify({
-        'message': message
-    }));
-    messageInputDom.value = '';
+    if (message === '') {
+        const fieldErrorMessage = document.querySelector('#field-error-message');
+        const error = document.createElement('span');
+        error.innerText = "This field can't be empty";
+        error.classList.add("bg-light", "p-2", "rounded", "text-danger");
+        fieldErrorMessage.appendChild(error);
+        setInterval(function removeError() {
+            fieldErrorMessage.remove(error);
+        }, 1000)
+        removeError()
+    } else {
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        messageInputDom.value = '';
+    }
 };
