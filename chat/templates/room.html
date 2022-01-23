@@ -41,12 +41,5 @@
 </div>
     {{ request.user.id|json_script:"user_id" }}
 <script src='{% static "room.js" %}'></script>
-<script>
-    const sendButtonPressed = document.querySelector("#chat-message-submit");
-    const messageCard = document.querySelector(".card")
-    sendButtonPressed.addEventListener('click', () => {
-        messageCard.scrollIntoView(false)
-    })
-</script>
 
 {% endblock content %}
