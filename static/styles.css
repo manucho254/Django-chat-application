@@ -1,21 +1,30 @@
 .message-card {
+    overflow-y: auto;
     max-height: 500px;
-    overflow-y: scroll;
 }
 
 .messages {
     width: auto;
     max-width: 300px;
     height: auto;
-    margin-left: 0.4rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
     padding: 0.5rem 1rem;
     border-top-left-radius: 1px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 30px;
+}
+
+.reciever {
     background-color: aqua;
+    color: #ffff;
+    margin-bottom: 0.5rem;
+}
+
+.sender {
+    background-color: grey;
+    color: #ffff;
+    margin-left: auto;
+    margin-bottom: 0.5rem;
 }
 
 .emptyText {

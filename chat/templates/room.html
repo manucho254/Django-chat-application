@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center mt-3">
         <div class="col-md-6 col-sm-12">
-            <div class="card p-1 bg-light rounded message-card">
+            <div class="card p-1 bg-light rounded">
                 <div class="card-header mb-3 p-2">
                     <div class="d-flex justify-content-between">
                         <div>
@@ -25,20 +25,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-light">
-                    <div id="chat-log"></div>
-                </div>
-                <div class="d-flex">
-                    <input id="chat-message-input" class="room-input form-control shadow-none mt-2" type="text" size="100"><br>
-                    <div id="field-error-message"></div>
-                    <input id="chat-message-submit" type="button" class="btn send-button shadow-none mt-2" value="Send">
-                        {{ room_name|json_script:"room-name" }}
+                <div class="card-body message-card">
+                    <div class="bg-light">
+                        <div id="chat-log"></div>
+                    </div>
+                    <div class="d-flex">
+                        <input id="chat-message-input" class="room-input form-control shadow-none mt-2" type="text" size="100"><br>
+                        <input id="chat-message-submit" type="button" class="btn send-button shadow-none mt-2" value="Send">
+                            {{ room_name|json_script:"room-name" }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+    {{ request.user.id|json_script:"user_id" }}
 <script src='{% static "room.js" %}'></script>
+<script>
+    const sendButtonPressed = document.querySelector("#chat-message-submit");
+    const messageCard = document.querySelector(".card")
+    sendButtonPressed.addEventListener('click', () => {
+        messageCard.scrollIntoView(false)
+    })
+</script>
 
 {% endblock content %}
