@@ -5,12 +5,53 @@
 
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-12">
+            {% for profile in profiles %}
+                <div class="card p-2 mb-2 mt-3 bg-light">
+                    <div class="d-flex">
+                        <img src="{{ profile.profile_image.url }}"  class="user-image rounded-circle" alt="prof_image">
+                        <span id="span_Id" class="lead text-capitalize">{{ profile.user }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
         <p class="lead mt-2">What chat room would you like to enter?</p><br>
         <div id="field-error-message"></div>
         <input id="room-name-input" type="text" class="form-control shadow-none mb-2 mt-3"><br>
         <input id="room-name-submit" type="button" class="btn btn-success shadow-none" value="Enter">
     </div>
 </div>
+
+{% comment %} <script>
+    function changeActive(elem) {
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].addEventListener("click", function(e) {
+                var current = this;
+                let profUser = document.querySelector("#span_Id").innerText;
+                function spanTag(el){
+                    for (var i = 0; i < el.length; i++) {
+                        el[i].addEventListener("click", function(e) {
+                            console.log(el);
+                        });
+                    }
+                }
+                spanTag(profUser);
+                for (var i = 0; i < elem.length; i++) { 
+                    if (current != elem[i]) {
+                        elem[i].classList.remove('active-card');
+                    } else if (current.classList.contains('active') === true) {
+                        current.classList.remove('active-card');
+                    } else {
+                        current.classList.add('active-card')
+                    }
+                }
+                e.preventDefault();
+                alert(profId)
+            });
+        };
+    }
+    changeActive(document.querySelectorAll('.card'));
+</script> {% endcomment %}
 
 <script src="{% static 'index.js' %}"></script>
 

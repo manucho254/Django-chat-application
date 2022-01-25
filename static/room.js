@@ -5,7 +5,7 @@ const emptyText = document.createElement("span");
 if (chatLog.childNodes.length < 1) {
     emptyText.id = 'emptyText';
     emptyText.innerText = 'No messages';
-    emptyText.className = "emptyText";
+    emptyText.classList.add("emptyText");
     chatLog.appendChild(emptyText);
 }
 
@@ -23,7 +23,7 @@ chatSocket.onmessage = function(e) {
     const userId = data['user_id'];
     const loggedInUserId = JSON.parse(document.getElementById('user_id').textContent)
     chatMessage.innerText = `${data.message}`;
-    console.log(loggedInUserId)
+
     if (userId === loggedInUserId) {
         chatMessage.classList.add("messages", "sender");
     } else {
@@ -31,7 +31,8 @@ chatSocket.onmessage = function(e) {
     }
 
     chatLog.appendChild(chatMessage);
-    if (chatLog.childNodes.length >= 1) {
+
+    if (chatLog.childNodes.length != 0) {
         chatLog.removeChild(emptyText);
     }
 };
